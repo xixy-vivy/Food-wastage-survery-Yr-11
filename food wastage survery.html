@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>୨୧ Food Waste Survey ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --pink: #f4a1c2;
+    --deep-pink: #d95791;
+    --light-pink: #fff0f6;
+    --white-pink: #fffafd;
+    --text: #80546b;
+    --border: #f8c8dc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 14px;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text);
+    background-color: #fff0f6;
+    background-image:
+        radial-gradient(circle at 10% 10%, #ffc8df 2px, transparent 3px),
+        radial-gradient(circle at 90% 30%, #f7b7d3 2px, transparent 3px),
+        radial-gradient(circle at 20% 80%, #ffc8df 3px, transparent 4px),
+        linear-gradient(135deg, #fff0f6, #ffe0ed, #fff8fc);
+    background-size: 65px 65px, 80px 80px, 90px 90px, 100% 100%;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 790px;
+    margin: auto;
+}
+
+/* Cute decorations */
+
+.decoration {
+    text-align: center;
+    color: var(--deep-pink);
+    font-size: 23px;
+    letter-spacing: 8px;
+    margin: 12px 0;
+}
+
+header {
+    position: relative;
+    text-align: center;
+    background: rgba(255,255,255,0.96);
+    padding: 35px 22px;
+    border: 2px solid var(--border);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px #d9579118;
+    overflow: hidden;
+}
+
+header::before {
+    content: "୨୧";
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: #efa1c3;
+    font-size: 27px;
+}
+
+header::after {
+    content: "୨୧";
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    color: #efa1c3;
+    font-size: 27px;
+}
+
+.bow {
+    font-size: 48px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--deep-pink);
+    font-size: clamp(27px, 6vw, 42px);
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 8px 0;
+}
+
+.subtitle {
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 550px;
+    margin: 12px auto;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--light-pink);
+    color: var(--deep-pink);
+    border: 1px dashed var(--pink);
+    padding: 9px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* Team section */
+
+.team {
+    margin-top: 25px;
+    background: #fff0f6;
+    padding: 22px 15px;
+    border: 1px dashed #eda0c1;
+    border-radius: 22px;
+}
+
+.team h2 {
+    font-family: 'Pacifico', cursive;
+    color: var(--deep-pink);
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 17px;
+}
+
+.team-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-member {
+    background: white;
+    border: 1px solid #f8d1e1;
+    border-radius: 15px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Survey progress */
+
+.progress-card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    margin: 24px 0;
+    text-align: center;
+}
+
+.progress-title {
+    color: var(--deep-pink);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.progress-track {
+    height: 11px;
+    background: #ffe0ed;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #f6b5d0, #d95791);
+    border-radius: 30px;
+    transition: width 0.3s ease;
+}
+
+#progressText {
+    font-size: 12px;
+}
+
+/* Questions */
+
+.question {
+    background: rgba(255,255,255,0.97);
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 23px;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 5px 18px #d9579110;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.question:hover {
+    box-shadow: 0 8px 22px #d9579118;
+}
+
+.question-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.question-number {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #ffe0ed;
+    color: var(--deep-pink);
+    border: 1px solid #f7bad4;
+    border-radius: 13px;
+    font-weight: 700;
+}
+
+.question h3 {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 2px 0 0;
+}
+
+.required {
+    color: var(--deep-pink);
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 15px;
+    margin: 9px 0;
+    background: #fffafd;
+    border: 1px solid #f8dce8;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: all 0.2s ease;
+}
+
+.option:hover {
+    background: #fff0f6;
+    border-color: var(--pink);
+    transform: translateX(3px);
+}
+
+.option:has(input:checked) {
+    background: #ffe2ef;
+    border-color: var(--deep-pink);
+    color: #a63b6b;
+    font-weight: 700;
+}
+
+input[type="radio"] {
+    accent-color: var(--deep-pink);
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Submit button */
+
+.submit-button {
+    width: 100%;
+    border: none;
+    border-radius: 18px;
+    padding: 18px;
+    margin-top: 5px;
+    background: linear-gradient(120deg, #f4a1c2, #d95791);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 15px #d9579130;
+    transition: 0.2s;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 20px #d957913b;
+}
+
+.error-message {
+    display: none;
+    background: #fff0f6;
+    border: 1px solid var(--pink);
+    color: var(--deep-pink);
+    padding: 14px;
+    border-radius: 14px;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Thank-you screen */
+
+#message {
+    display: none;
+    text-align: center;
+    background: white;
+    border: 2px dashed var(--pink);
+    border-radius: 25px;
+    padding: 35px 22px;
+    margin-top: 20px;
+}
+
+.success-bow {
+    font-size: 55px;
+}
+
+#message h2 {
+    color: var(--deep-pink);
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 27px;
+}
+
+#message p {
+    line-height: 1.9;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 28px 10px;
+    font-size: 12px;
+    line-height: 2;
+}
+
+footer strong {
+    color: var(--deep-pink);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px 8px;
+    }
+
+    header {
+        padding: 28px 15px;
+    }
+
+    .question {
+        padding: 18px 14px;
+    }
+
+    .question h3 {
+        font-size: 15px;
+    }
+
+    .team-member {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="decoration">୨୧ ♡ ✧ ˚₊‧꒰ა ☆ ໒꒱ ‧₊˚ ✧ ♡ ୨୧</div>
+
+    <header>
+        <div class="bow">🎀</div>
+
+        <h1>Food Waste Survey</h1>
+
+        <div class="decoration">♡ ˚₊‧꒰ა 🌸 ໒꒱‧₊˚ ♡</div>
+
+        <p class="subtitle">
+            Welcome to our little survey! ♡<br>
+            We want to understand food wastage and food
+            insecurity in our communities. Every answer
+            helps us learn how we can reduce waste and
+            help people who need food. ୨୧
+        </p>
+
+        <div class="tag">✧ 10 QUESTIONS · ABOUT 3 MINUTES ✧</div>
+
+        <div class="team">
+            <h2>Made with love by ♡</h2>
+
+            <div class="team-list">
+                <div class="team-member">୨୧ Chiemerie Nnochiri</div>
+                <div class="team-member">୨୧ Obafemi Ajasa</div>
+                <div class="team-member">୨୧ Joshua Iwe</div>
+                <div class="team-member">୨୧ Oluwadurotimi Durosinmi-Etti</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="decoration">✧･ﾟ: *✧･ﾟ:* ♡ *:･ﾟ✧*:･ﾟ✧</div>
+
+    <div class="progress-card">
+        <div class="progress-title">♡ Your survey progress ♡</div>
+
+        <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <span id="progressText">0 of 10 answered · You got this! 🎀</span>
+    </div>
+
+    <form id="surveyForm">
+        <div id="questions"></div>
+
+        <div class="error-message" id="errorMessage" role="alert">
+            ♡ Please answer every question before submitting! ♡
+        </div>
+
+        <button type="submit" class="submit-button">
+            Submit My Answers ♡ ୨୧
+        </button>
+    </form>
+
+    <div id="message" role="status" aria-live="polite">
+        <div class="success-bow">🎀🌸🎀</div>
+
+        <h2>Thank You So Much!</h2>
+
+        <p>
+            Your survey is complete! ♡<br>
+            Thank you for sharing your thoughts on food
+            waste and food insecurity.
+        </p>
+
+        <div class="decoration">୨୧ ♡ ✧ ♡ ୨୧</div>
+    </div>
+
+    <div class="decoration">♡ ⋆｡˚ ☁︎ ˚｡⋆ ♡</div>
+
+    <footer>
+        <strong>Made with ♡ by our team</strong><br>
+        Chiemerie Nnochiri · Obafemi Ajasa<br>
+        Joshua Iwe · Oluwadurotimi Durosinmi-Etti<br><br>
+        ୨୧ Small actions, less waste, more hope. ୨୧
+        <br>✧ Thank you for being part of our survey! ✧
+    </footer>
+
+</div>
+
+<script>
+const surveyQuestions = [
+    {
+        question: "How often does your household throw away leftover food?",
+        options: ["Always", "Often", "Sometimes", "Rarely", "Never"]
+    },
+    {
+        question: "What are the main reasons you throw away food?",
+        options: [
+            "Food expires",
+            "Food spoils",
+            "We cook or buy too much",
+            "We do not like the leftovers",
+            "Other"
+        ]
+    },
+    {
+        question: "How often do you buy more food than your household needs?",
+        options: ["Always", "Often", "Sometimes", "Rarely", "Never"]
+    },
+    {
+        question: "Do you think food waste is a major problem in your community?",
+        options: ["Yes", "No", "Not sure"]
+    },
+    {
+        question: "Have you or someone you know ever struggled to afford enough food?",
+        options: ["Yes", "No", "Prefer not to say"]
+    },
+    {
+        question: "How often do you worry about not having enough food at home?",
+        options: ["Always", "Often", "Sometimes", "Rarely", "Never"]
+    },
+    {
+        question: "Do you think restaurants and supermarkets waste too much food?",
+        options: ["Yes", "No", "Maybe", "Not sure"]
+    },
+    {
+        question: "Would you support a system that redistributes surplus food to people in need?",
+        options: ["Yes", "No", "Maybe"]
+    },
+    {
+        question: "What do you think prevents surplus food from reaching people who need it?",
+        options: [
+            "Lack of awareness",
+            "Poor transportation",
+            "Food safety concerns",
+            "Lack of organisations to distribute food",
+            "Other"
+        ]
+    },
+    {
+        question: "Would you be willing to donate extra food instead of throwing it away?",
+        options: ["Yes", "No", "Maybe"]
+    }
+];
+
+const form = document.getElementById("surveyForm");
+const questionsContainer = document.getElementById("questions");
+
+surveyQuestions.forEach((item, index) => {
+    const number = index + 1;
+
+    const section = document.createElement("section");
+    section.className = "question";
+    section.id = `question-card-${number}`;
+
+    const heading = document.createElement("div");
+    heading.className = "question-heading";
+
+    const badge = document.createElement("span");
+    badge.className = "question-number";
+    badge.textContent = String(number).padStart(2, "0");
+
+    const title = document.createElement("h3");
+    title.textContent = item.question + " ";
+
+    const required = document.createElement("span");
+    required.className = "required";
+    required.textContent = "*";
+
+    title.appendChild(required);
+    heading.appendChild(badge);
+    heading.appendChild(title);
+    section.appendChild(heading);
+
+    item.options.forEach((option, optionIndex) => {
+        const label = document.createElement("label");
+        label.className = "option";
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `question${number}`;
+        radio.value = option;
+
+        // Each question is compulsory.
+        radio.required = optionIndex === 0;
+
+        const optionText = document.createElement("span");
+        optionText.textContent = option;
+
+        label.appendChild(radio);
+        label.appendChild(optionText);
+        section.appendChild(label);
+    });
+
+    questionsContainer.appendChild(section);
+});
+
+function updateProgress() {
+    let answered = 0;
+
+    surveyQuestions.forEach((item, index) => {
+        const selected = form.querySelector(
+            `input[name="question${index + 1}"]:checked`
+        );
+
+        if (selected) answered++;
+    });
+
+    document.getElementById("progressBar").style.width =
+        `${answered / surveyQuestions.length * 100}%`;
+
+    document.getElementById("progressText").textContent =
+        `${answered} of ${surveyQuestions.length} answered · ` +
+        (answered === 10 ? "All done! 🎀" : "Keep going! ♡");
+}
+
+form.addEventListener("change", () => {
+    updateProgress();
+
+    document.getElementById("errorMessage").style.display = "none";
+});
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Check that every question has an answer.
+    let firstUnanswered = -1;
+
+    surveyQuestions.forEach((item, index) => {
+        const selected = form.querySelector(
+            `input[name="question${index + 1}"]:checked`
+        );
+
+        if (!selected && firstUnanswered === -1) {
+            firstUnanswered = index;
+        }
+    });
+
+    if (firstUnanswered !== -1) {
+        document.getElementById("errorMessage").style.display = "block";
+
+        const firstCard = document.getElementById(
+            `question-card-${firstUnanswered + 1}`
+        );
+
+        firstCard.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        return;
+    }
+
+    // Collect the answers.
+    const answers = {};
+
+    surveyQuestions.forEach((item, index) => {
+        const selected = form.querySelector(
+            `input[name="question${index + 1}"]:checked`
+        );
+
+        answers[item.question] = selected.value;
+    });
+
+    // For now, responses are available in the browser console.
+    console.log("Food Waste Survey Response:", answers);
+
+    form.style.display = "none";
+    document.querySelector(".progress-card").style.display = "none";
+    document.getElementById("message").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+</body>
+</html>
